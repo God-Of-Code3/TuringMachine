@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Интерпретатор машины Тьюринга</title>
+
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script src="https://kit.fontawesome.com/9820dad602.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<header class="header">
+		<h1 class="header-brand">Интерпретатор<br>машины Тьюринга<br></h1>
+		<ul class="menu">
+			<li id="open-file-button"><label for="fl" class="file-label">
+				<i class="fas fa-folder-open"></i>
+				<input type="file" name="fl" id="fl" accept="application/json">
+			</label></li>
+			<li id="download-button"><i class="fas fa-file-download"></i></li>
+		</ul>
+		<ul class="menu">
+			<li id="settings-button"><i class="fas fa-cog"></i></li>
+			<li id="info-button"><i class="fas fa-question-circle"></i></li>
+		</ul>
+	</header>
+	<main>
+		<div class="part left-part">
+			<div class="panel">
+				<div class="panel-header">
+					Информация о программе
+				</div>
+				<div class="panel-content">
+					<label for="tape">Название</label>
+					<input type="text" data-setting="program-name" class="inp">
+				</div>
+			</div>
+			<div class="panel">
+				<div class="panel-header">
+					Программирование
+				</div>
+				<div class="panel-content">
+					<div class="tape">
+						<label for="tape">Лента:</label>
+						<input type="text" id="tape" class="inp">
+					</div>
+					<div class="program">
+						<div class="program-control">
+							<label>Программа:</label>
+							<div class="program-buttons">
+								<button id="add-state" class="btn">+Q</button>
+								<button id="add-letter" class="btn">+A</button>
+							</div>
+							
+						</div>
+						<div class="program-table-slider">
+							<table class="program-table">
+								<tr>
+									<td></td>
+									<th>Q1</th>
+									<th>Q2</th>
+								</tr>
+								<tr>
+									<th>_</th>
+									<td class="cell">
+										<div class="cell-input"><input type="text"></div>
+										<div class="cell-visual">1 <b>></b> Q2</div>
+									</td>
+									<td class="cell">
+										<div class="cell-input"><input type="text"></div>
+										<div class="cell-visual">1 <b>></b> Q2</div>
+									</td>
+								</tr>
+								<tr>
+									<th>A</th>
+									<td class="cell">
+										<div class="cell-input"><input type="text"></div>
+										<div class="cell-visual">1 <b>></b> Q2</div>
+									</td>
+									<td class="cell">
+										<div class="cell-input"><input type="text"></div>
+										<div class="cell-visual">1 <b>></b> Q2</div>
+									</td>
+								</tr>
+								
+							</table>
+						</div>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+		<div class="part right-part">
+			<div class="panel">
+				<div class="panel-header">
+					Выполнение
+				</div>
+				<div class="panel-content">
+					<div class="exec">
+						<div class="exec-controls">
+
+							<button id="stop" class="btn btn-red" disabled><i class="fas fa-stop"></i></button>
+							<button id="pause" class="btn" disabled><i class="fas fa-pause"></i></button>
+							<button id="start" class="btn btn-green"><i class="fas fa-play"></i></button>
+							<button id="step-forward" class="btn"><i class="fas fa-step-forward"></i></button>
+							
+						</div>
+						<div class="exec-visual">
+							<label for="tape">Положение указателя:</label>
+							<div id="exec-visual-tape" class="tape-visual-area">
+								
+							</div>
+						</div>
+						<div class="exec-log">
+
+							<label for="tape">Выполнение:</label>
+							<textarea rows="10" disabled wrap="off" id="exec-current" class="inp"></textarea><br>
+							<label for="tape">Лог:</label>
+							<textarea rows="3" disabled id="exec-log" class="inp"></textarea>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="context-menu"><button class="btn btn-red">Удалить</button></div>
+	</main>
+
+	<div class="modal" id="settings-modal">
+		<div class="modal-wrap panel">
+			<div class="panel-header">
+				Настройки
+
+				<div class="close">
+					<i class="fas fa-times"></i>
+				</div>
+			</div>
+			<div class="panel-content">
+				<label for="tape">Скорость (итераций в секунду):<br><sub>от 1 до 500</sub></label>
+				<input type="number" data-setting="speed" class="inp" value="10" max="500" min="1">
+				<br>
+				<button id="save-settings" class="btn">Сохранить</button>
+			</div>
+		</div>
+	</div>
+
+	<script src='assets/js/interface.js'></script>
+	<script src='assets/js/turing-machine.js'></script>
+	<script src='assets/js/files.js'></script>
+</body>
+</html>
